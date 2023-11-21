@@ -1,10 +1,9 @@
 name: Generate Language Stats
 
 on:
-  workflow_run:
-    workflows: ["LANGUAGES"]
-    types:
-      - completed
+  push:
+    branches:
+      - main  # or the branch you want to trigger the workflow on
 
 jobs:
   generate-language-stats:
@@ -17,3 +16,4 @@ jobs:
         uses: ellerbrock/github-action-repository-language-stats@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
