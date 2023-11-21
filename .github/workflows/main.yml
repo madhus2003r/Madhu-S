@@ -1,0 +1,19 @@
+name: Generate Language Stats
+
+on:
+  workflow_run:
+    workflows: ["LANGUAGES"]
+    types:
+      - completed
+
+jobs:
+  generate-language-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate Language Stats
+        uses: ellerbrock/github-action-repository-language-stats@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
